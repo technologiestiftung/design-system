@@ -1,0 +1,18 @@
+{
+  "plugins": [
+    "@emotion",
+    ["@babel/plugin-proposal-private-property-in-object", { "loose": true }],
+    ["@babel/plugin-proposal-private-methods", { "loose": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }]
+  ],
+  "presets": [
+    [
+      "next/babel",
+      {
+        "@babel/preset-env": {},
+        "@babel/preset-react": { "runtime": "automatic" },
+        "@babel/preset-typescript": {}
+      }
+    ]
+  ]
+}

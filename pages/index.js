@@ -1,5 +1,3 @@
-import { MDXProvider } from '@mdx-js/react'
-
 function HomePage() {
   return ( 
     <div>
