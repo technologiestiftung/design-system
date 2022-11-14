@@ -1,7 +1,7 @@
 function HomePage() {
   return ( 
     <div>
-      Welcome to Next.js!
+      TSB-Design-System
     </div>
   )
 }

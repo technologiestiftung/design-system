@@ -1,4 +1,5 @@
 import "../styles/global.scss";
+import Layout from '../components/layout'
 import { MDXProvider } from "@mdx-js/react";
 
 const InlineCode = ({children}) => (
@@ -12,7 +13,9 @@ const components = {
 export default function App({ Component, pageProps }) {
   return (
     <MDXProvider components={components}>
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </MDXProvider>
   );
 }
