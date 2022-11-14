@@ -1,5 +1,5 @@
 import "../styles/global.scss";
-import Layout from '../components/layout'
+import Layout from '../components/Layout'
 import { MDXProvider } from "@mdx-js/react";
 
 const InlineCode = ({children}) => (
