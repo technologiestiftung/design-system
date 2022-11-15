@@ -3,7 +3,9 @@
     "@mdx-js/loader": "^2.1.5",
     "@mdx-js/react": "^2.1.5",
     "@next/mdx": "^13.0.2",
+    "babel-plugin-superjson-next": "^0.4.4",
     "babel-preset-next": "^1.4.0",
+    "date-fns": "^2.29.3",
     "esbuild": "^0.14.54",
     "gray-matter": "^4.0.3",
     "mdx-bundler": "^9.0.1",
@@ -12,7 +14,9 @@
     "react-dom": "^18.2.0",
     "remark": "^14.0.2",
     "remark-html": "^15.0.1",
-    "styled-components": "^5.3.6"
+    "safe-json-stringify": "^1.2.0",
+    "styled-components": "^5.3.6",
+    "superjson": "^1.11.0"
   },
   "scripts": {
     "dev": "next dev",

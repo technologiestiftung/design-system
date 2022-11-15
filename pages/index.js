@@ -2,8 +2,9 @@ import { getSortedDocsData } from '../lib/docs';
 
 export async function getStaticProps() {
   const allDocsData = getSortedDocsData();
+  
   //Clean Date data
-  allDocsData.map(dataPoint => dataPoint.date = JSON.stringify(dataPoint.date))
+  allDocsData.map(dataPoint => dataPoint.date = dataPoint.date.toString())
 
   return {
     props: {

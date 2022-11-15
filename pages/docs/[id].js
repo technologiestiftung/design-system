@@ -1,9 +1,10 @@
 import { getAllDocIds, getDocData } from '../../lib/docs';
+import Date from '../../components/Date';
+import Head from 'next/head';
 
 export const getStaticProps = async({ params }) => {
   const docData = await getDocData(params.id);
-  docData.date = JSON.stringify(docData.date)
-  console.log("DOC DATA", docData)
+
   return {
     props: {
       docData,
@@ -22,11 +23,14 @@ export const getStaticPaths = () => {
 const Doc = ({ docData }) => {
   return(
     <>
-      {docData.title}
+      <Head>
+        <title>{docData.name}</title>
+      </Head>
+      {docData.name}
       <br />
       {docData.id}
       <br />
-      {docData.date}
+      <Date dateString={docData.date} />
       <br />
       <div dangerouslySetInnerHTML={{ __html: docData.contentHtml }} />
     </>
