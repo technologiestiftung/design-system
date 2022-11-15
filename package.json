@@ -4,9 +4,14 @@
     "@mdx-js/react": "^2.1.5",
     "@next/mdx": "^13.0.2",
     "babel-preset-next": "^1.4.0",
+    "esbuild": "^0.14.54",
+    "gray-matter": "^4.0.3",
+    "mdx-bundler": "^9.0.1",
     "next": "^13.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "remark": "^14.0.2",
+    "remark-html": "^15.0.1",
     "styled-components": "^5.3.6"
   },
   "scripts": {

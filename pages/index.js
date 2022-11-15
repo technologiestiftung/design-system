@@ -1,8 +1,33 @@
-function HomePage() {
+import { getSortedDocsData } from '../lib/docs';
+
+export async function getStaticProps() {
+  const allDocsData = getSortedDocsData();
+  //Clean Date data
+  allDocsData.map(dataPoint => dataPoint.date = JSON.stringify(dataPoint.date))
+
+  return {
+    props: {
+      allDocsData,
+    },
+  };
+}
+
+const HomePage = ({ allDocsData }) => {
   return ( 
-    <div>
-      TSB-Design-System
-    </div>
+    <section>
+        <h2>Docs</h2>
+        <ul>
+          {allDocsData.map(({ id, date, name }) => (
+            <li key={id}>
+              {name}
+              <br />
+              {id}
+              <br />
+              {date}
+            </li>
+          ))}
+        </ul>
+      </section>
   )
 }
 
