@@ -1,10 +1,9 @@
 import { getSortedDocsData } from '../lib/docs';
+import Link from 'next/link';
+import Date from '../components/Date';
 
 export async function getStaticProps() {
   const allDocsData = getSortedDocsData();
-  
-  //Clean Date data
-  allDocsData.map(dataPoint => dataPoint.date = dataPoint.date.toString())
 
   return {
     props: {
@@ -19,12 +18,12 @@ const HomePage = ({ allDocsData }) => {
         <h2>Docs</h2>
         <ul>
           {allDocsData.map(({ id, date, name }) => (
-            <li key={id}>
-              {name}
+            <li  key={id}>
+              <Link href={`/docs/${id}`}>{name}</Link>
               <br />
-              {id}
-              <br />
-              {date}
+              <small>
+                <Date dateString={date} />
+              </small>
             </li>
           ))}
         </ul>
