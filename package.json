@@ -16,7 +16,8 @@
     "remark-html": "^15.0.1",
     "safe-json-stringify": "^1.2.0",
     "styled-components": "^5.3.6",
-    "superjson": "^1.11.0"
+    "superjson": "^1.11.0",
+    "typescript-eslint": "^0.0.1-alpha.0"
   },
   "scripts": {
     "dev": "next dev",
