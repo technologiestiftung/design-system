@@ -1,5 +1,5 @@
 backend:
-  name: git-gateway
+  name: github
   branch: main # Branch to update (optional; defaults to master)
   repo: technologiestiftung/design-system
 publish_mode: editorial_workflow
