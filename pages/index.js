@@ -1,20 +1,24 @@
 import { getSortedDocsData } from '../lib/docs';
+import { getSortedComponentsData } from '../lib/components';
 import Link from 'next/link';
 import Date from '../components/Date';
 
 export async function getStaticProps() {
   const allDocsData = getSortedDocsData();
+  const allComponentsData = getSortedComponentsData();
 
   return {
     props: {
       allDocsData,
+      allComponentsData
     },
   };
 }
 
-const HomePage = ({ allDocsData }) => {
+const HomePage = ({ allDocsData, allComponentsData }) => {
   return ( 
-    <section>
+    <>
+      <section>
         <h2>Docs</h2>
         <ul>
           {allDocsData.map(({ id, date, name }) => (
@@ -28,6 +32,17 @@ const HomePage = ({ allDocsData }) => {
           ))}
         </ul>
       </section>
+      <section>
+        <h2>Component Library</h2>
+        <ul>
+          {allComponentsData.map(({ id, name }) => (
+            <li  key={id}>
+              <Link href={`/components/${id}`}>{name}</Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </>
   )
 }
 
