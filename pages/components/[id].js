@@ -1,6 +1,10 @@
 import { getAllComponentIds, getComponentData } from '../../lib/components';
+import { getMDXComponent } from "mdx-bundler/client";
+
+import { useMemo } from "react";
 import Head from 'next/head';
 import Link from 'next/link';
+import { SyntaxHighlighter } from '../../components/SynthaxHighlighter';
 
 export const getStaticProps = async({ params }) => {
   const componentData = await getComponentData(params.id);
@@ -21,8 +25,18 @@ export const getStaticPaths = () => {
 }
 
 const Component = ({ componentData }) => {
+  const Component = useMemo(
+    () => getMDXComponent(componentData.code),
+    [componentData.code]
+  );
+
+  const components = {
+    pre: SyntaxHighlighter,
+  };
+
   return(
     <>
+      <h1>Hello world</h1>
       <Head>
         <title>{componentData.name}</title>
       </Head>
@@ -30,7 +44,7 @@ const Component = ({ componentData }) => {
       <br />
       {componentData.id}
       <br />
-      <div dangerouslySetInnerHTML={{ __html: componentData.contentHtml }} />
+      <Component components={components} />
       <Link href="/">Back to home</Link>
     </>
   )

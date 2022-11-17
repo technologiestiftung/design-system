@@ -1,21 +1,15 @@
 import "../styles/global.scss";
 import Layout from '../components/Layout'
-import { MDXProvider } from "@mdx-js/react";
-
-const InlineCode = ({children}) => (
-  <div style={{ background: "black", color: "green", padding: "1rem"}}>{children}</div>
-)
+import { SyntaxHighlighter } from '../components/SynthaxHighlighter'
 
 const components = {
-  code: InlineCode,
+  code: SyntaxHighlighter,
 };
 
 export default function App({ Component, pageProps }) {
   return (
-    <MDXProvider components={components}>
       <Layout>
         <Component {...pageProps} />
       </Layout>
-    </MDXProvider>
   );
 }
