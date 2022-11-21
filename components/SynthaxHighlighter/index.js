@@ -29,7 +29,6 @@ export const SyntaxHighlighter = ({ children }) => {
   const code = children.props.children;
   const language = children.props.className?.replace("language-", "").trim();
 
-
   return (
     <Highlight {...defaultProps} code={code} theme={theme} language={language}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (

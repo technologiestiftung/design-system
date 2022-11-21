@@ -1,15 +1,23 @@
 import "../styles/global.scss";
+import Head from "next/head";
 import Layout from '../components/Layout'
-import { SyntaxHighlighter } from '../components/SynthaxHighlighter'
+import { NavigationContextProvider } from '../context/state'
 
-const components = {
-  code: SyntaxHighlighter,
-};
+export default function App({ 
+  Component, 
+  pageProps,
+}) {
 
-export default function App({ Component, pageProps }) {
   return (
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+    <>
+      <Head>
+        <title>TSB-Design-System</title>
+      </Head>
+      <NavigationContextProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </NavigationContextProvider>
+    </>
   );
 }

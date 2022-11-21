@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-
 import { Nav } from '../Nav'
 import { Footer } from '../Footer'
 
@@ -22,11 +21,11 @@ const FooterWrapper = styled.div`
   grid-area: footer;
 `
 
-export default function Layout({ children }) {
+export default function Layout({ children, data }) {
   return (
     <PageWrapper>
       <NavWrapper>
-        <Nav />
+        <Nav data={data} />
       </NavWrapper>
       <MainWrapper>
         <main>{children}</main>

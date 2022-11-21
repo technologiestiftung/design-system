@@ -16,6 +16,7 @@ export async function getStaticProps() {
 }
 
 const HomePage = ({ allDocsData, allComponentsData }) => {
+
   return ( 
     <>
       <section>

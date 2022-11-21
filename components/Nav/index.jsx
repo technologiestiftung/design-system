@@ -1,8 +1,11 @@
+import { useContext } from 'react';
 import styled from 'styled-components'
 import Link from 'next/link'
+import { useNavigationContext } from '../../context/state'
 
 const Wrapper = styled.section`
   max-width: 10rem;
+  margin: auto 4rem;
 `
 
 const Navigation = styled.div`
@@ -12,21 +15,23 @@ const Navigation = styled.div`
 const StyledLinkListItem = styled.li`
   list-style-type: none;
 `
+const linklist = ["some", "strings"]
 
-const linkList = [
-  "Docs",
-  "Components",
-  "Best Practices",
-  "Wiki",
-  "etc"
-]
+
 
 export const Nav = () => {
+
+  const docIds = useNavigationContext();
+  console.log(docIds)
+  
+
+
+
   return (
     <Wrapper>
       <Navigation>
         <ul>
-          {linkList.map((link, index) => {
+          {linklist.map((link, index) => {
             return (
               <StyledLinkListItem key={index}>
                 <Link href="/">{link}</Link>
