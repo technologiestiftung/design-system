@@ -1,7 +1,6 @@
-import { useContext } from 'react';
 import styled from 'styled-components'
 import Link from 'next/link'
-import { useNavigationContext } from '../../context/state'
+
 
 const Wrapper = styled.section`
   max-width: 10rem;
@@ -15,30 +14,41 @@ const Navigation = styled.div`
 const StyledLinkListItem = styled.li`
   list-style-type: none;
 `
-const linklist = ["some", "strings"]
 
-
-
-export const Nav = () => {
-
-  const docIds = useNavigationContext();
-  console.log(docIds)
-  
-
-
+export const Nav = ({routerData}) => {
 
   return (
     <Wrapper>
       <Navigation>
+        <h3>Docs</h3>
         <ul>
-          {linklist.map((link, index) => {
+          {
+          routerData.allDocsData 
+          ? routerData.allDocsData.map((link, index) => {
             return (
               <StyledLinkListItem key={index}>
-                <Link href="/">{link}</Link>
+                <Link href={`/docs/${link.id}`}>{link.name}</Link>
               </StyledLinkListItem>
             )
-          })}
+          })
+          : <h4>loading...</h4>
+        }
         </ul>
+        <h3>Docs</h3>
+        <ul>
+          {
+          routerData.allComponentsData 
+          ? routerData.allComponentsData.map((link, index) => {
+            return (
+              <StyledLinkListItem key={index}>
+                <Link href={`/components/${link.id}`}>{link.name}</Link>
+              </StyledLinkListItem>
+            )
+          })
+          : <h4>loading...</h4>
+        }
+        </ul>
+        
       </Navigation>
     </Wrapper>
   )

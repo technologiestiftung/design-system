@@ -1,7 +1,6 @@
 import "../styles/global.scss";
 import Head from "next/head";
 import Layout from '../components/Layout'
-import { NavigationContextProvider } from '../context/state'
 
 export default function App({ 
   Component, 
@@ -13,11 +12,9 @@ export default function App({
       <Head>
         <title>TSB-Design-System</title>
       </Head>
-      <NavigationContextProvider>
-        <Layout>
+        <Layout data={pageProps}>
           <Component {...pageProps} />
         </Layout>
-      </NavigationContextProvider>
     </>
   );
 }

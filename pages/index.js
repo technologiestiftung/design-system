@@ -1,7 +1,7 @@
-import { getSortedDocsData } from '../lib/docs';
-import { getSortedComponentsData } from '../lib/components';
 import Link from 'next/link';
 import Date from '../components/Date';
+import { getSortedDocsData } from '../lib/docs';
+import { getSortedComponentsData } from '../lib/components';
 
 export async function getStaticProps() {
   const allDocsData = getSortedDocsData();
@@ -10,7 +10,7 @@ export async function getStaticProps() {
   return {
     props: {
       allDocsData,
-      allComponentsData
+      allComponentsData,
     },
   };
 }

@@ -1,14 +1,19 @@
-import { getAllDocIds, getDocData } from '../../lib/docs';
+import { getAllDocIds, getDocData, getSortedDocsData } from '../../lib/docs';
+import { getSortedComponentsData } from '../../lib/components';
 import Date from '../../components/Date';
 import Head from 'next/head';
 import Link from 'next/link';
 
 export const getStaticProps = async({ params }) => {
   const docData = await getDocData(params.id);
+  const allDocsData = getSortedDocsData();
+  const allComponentsData = getSortedComponentsData();
 
   return {
     props: {
       docData,
+      allDocsData,
+      allComponentsData
     },
   };
 }

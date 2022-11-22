@@ -1,5 +1,6 @@
-import { getAllComponentIds, getComponentData } from '../../lib/components';
+import { getSortedComponentsData, getAllComponentIds, getComponentData } from '../../lib/components';
 import { getMDXComponent } from "mdx-bundler/client";
+import { getSortedDocsData } from '../../lib/docs';
 
 import { useMemo } from "react";
 import Head from 'next/head';
@@ -8,10 +9,14 @@ import { SyntaxHighlighter } from '../../components/SynthaxHighlighter';
 
 export const getStaticProps = async({ params }) => {
   const componentData = await getComponentData(params.id);
+  const allDocsData = getSortedDocsData();
+  const allComponentsData = getSortedComponentsData();
 
   return {
     props: {
       componentData,
+      allDocsData,
+      allComponentsData
     },
   };
 }
