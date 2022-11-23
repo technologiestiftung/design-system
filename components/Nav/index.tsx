@@ -1,6 +1,5 @@
 import styled from 'styled-components'
-import Link from 'next/link'
-
+import Link from "next/link"
 
 const Wrapper = styled.section`
   max-width: 10rem;

@@ -5,8 +5,8 @@ import { Footer } from '../Footer'
 const PageWrapper = styled.section`
   display: grid;
   grid-template-areas:
-    "nav main"
-    "footer footer"
+    'nav main'
+    'footer footer';
 `
 
 const NavWrapper = styled.div`
