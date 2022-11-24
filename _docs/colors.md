@@ -8,4 +8,8 @@ thumbnail: img/hannah-was-machen.jpg
 
 ### **RICHY**-*RICH*text
 
-`c onsole.log("Was will man machen")`
+s﻿ome code
+```console.log("Was will man machen")```
+
+a﻿nd an image:
+![Pikatchu](/img/screenshot-2022-09-14-at-14.40.13.png)
