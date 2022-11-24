@@ -1,12 +1,27 @@
+import { FC } from 'react'
 import { getAllDocIds, getDocData, getSortedDocsData } from '../../lib/docs';
 import { getSortedComponentsData } from '../../lib/components';
 import Date from '../../components/Date';
 import Head from 'next/head';
 import Link from 'next/link';
 import styled from 'styled-components';
+import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 
-export const getStaticProps = async ({ params }) => {
-  const docData = await getDocData(params.id);
+export interface DocData {
+  name?: string
+  id: string
+  contentHtml: string
+  date?:Date
+  code: string
+  thumbnail?: string
+}
+
+export interface Doc {
+  docData: DocData
+}
+
+export const getStaticProps = async({ params }: Params) => {
+  const docData :DocData = await getDocData(params.id);
   const allDocsData = getSortedDocsData();
   const allComponentsData = getSortedComponentsData();
 
@@ -32,12 +47,14 @@ const HeaderImage = styled.img`
   margin: auto;
 `;
 
-const Doc = ({ docData }) => {
-  return (
+
+const Doc: FC<Doc> = ({ docData }) => {
+  return(
     <>
       <Head>
         <title>{docData.name}</title>
       </Head>
+
       <HeaderImage src={`/${docData.thumbnail}`} />
       <h1>{docData.name}</h1>
       <Date dateString={docData.date} />

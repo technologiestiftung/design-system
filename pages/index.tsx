@@ -1,33 +1,33 @@
-import Link from 'next/link';
-import Date from '../components/Date';
-import { getSortedDocsData } from '../lib/docs';
-import { getSortedComponentsData } from '../lib/components';
+import { FC } from 'react'
+import Link from 'next/link'
+import Date from '../components/Date'
+import { getSortedDocsData } from '../lib/docs'
+import { getSortedComponentsData } from '../lib/components'
 
 export async function getStaticProps() {
-  const allDocsData = getSortedDocsData();
-  const allComponentsData = getSortedComponentsData();
+  const allDocsData = getSortedDocsData()
+  const allComponentsData = getSortedComponentsData()
 
   return {
     props: {
       allDocsData,
       allComponentsData,
-    },
-  };
+    },  
+  }
 }
 
-const HomePage = ({ allDocsData, allComponentsData }) => {
-
-  return ( 
+const HomePage:FC<any> = ({ allDocsData, allComponentsData }) => {
+  return (
     <>
       <section>
         <h2>Docs</h2>
         <ul>
           {allDocsData.map(({ id, date, name }) => (
-            <li  key={id}>
+            <li key={id}>
               <Link href={`/docs/${id}`}>{name}</Link>
               <br />
               <small>
-                <Date dateString={date} />
+                <Date date={date} />
               </small>
             </li>
           ))}
@@ -37,7 +37,7 @@ const HomePage = ({ allDocsData, allComponentsData }) => {
         <h2>Component Library</h2>
         <ul>
           {allComponentsData.map(({ id, name }) => (
-            <li  key={id}>
+            <li key={id}>
               <Link href={`/components/${id}`}>{name}</Link>
             </li>
           ))}

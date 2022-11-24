@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import styled from 'styled-components'
 import { theme } from './styles'
@@ -25,12 +26,13 @@ const PreBlock = styled.pre`
   background: darkslategrey;
 `
 
-export const SyntaxHighlighter = ({ children }) => {
+export const SyntaxHighlighter: FC<any> = ({ children }) => {
+
   const code = children.props.children
   const language = children.props.className?.replace('language-', '').trim()
 
   return (
-    <Highlight {...defaultProps} code={code} theme={theme} language={language}>
+    <Highlight {...defaultProps} code={code} theme={theme as any} language={language}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <CodeBlockContainer>
           <PreBlock className={className} style={{ ...style }}>

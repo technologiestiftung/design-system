@@ -1,5 +1,8 @@
+import { FC } from 'react'
 import styled from 'styled-components'
 import Link from "next/link"
+import { ComponentData } from '../../pages/components/[id]'
+import { DocData } from '../../pages/docs/[id]'
 
 const Wrapper = styled.section`
   max-width: 10rem;
@@ -14,16 +17,22 @@ const StyledLinkListItem = styled.li`
   list-style-type: none;
 `
 
-export const Nav = ({routerData}) => {
+interface NavType {
+  data: {
+    allDocsData: DocData[]
+    allComponentsData: ComponentData[]
+  }
+}
 
+export const Nav: FC<NavType> = ({ data }) => {
   return (
     <Wrapper>
       <Navigation>
         <h3>Docs</h3>
         <ul>
           {
-          routerData.allDocsData 
-          ? routerData.allDocsData.map((link, index) => {
+          data.allDocsData 
+          ? data.allDocsData.map((link, index) => {
             return (
               <StyledLinkListItem key={index}>
                 <Link href={`/docs/${link.id}`}>{link.name}</Link>
@@ -36,8 +45,8 @@ export const Nav = ({routerData}) => {
         <h3>Docs</h3>
         <ul>
           {
-          routerData.allComponentsData 
-          ? routerData.allComponentsData.map((link, index) => {
+          data.allComponentsData 
+          ? data.allComponentsData.map((link, index) => {
             return (
               <StyledLinkListItem key={index}>
                 <Link href={`/components/${link.id}`}>{link.name}</Link>

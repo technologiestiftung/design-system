@@ -25,7 +25,7 @@ export default function Layout({ children, data }) {
   return (
     <PageWrapper>
       <NavWrapper>
-        <Nav routerData={data} />
+        <Nav data={data} />
       </NavWrapper>
       <MainWrapper>
         <main>{children}</main>
