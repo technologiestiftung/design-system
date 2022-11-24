@@ -8,7 +8,7 @@ public_folder: img
 collections:
   - name: 'doc'
     label: 'Doc'
-    folder: '_docs/doc'
+    folder: '_docs'
     create: true
     identifier_field: name
     fields:
