@@ -14,20 +14,5 @@
   "proseWrap": "preserve",
   "quoteProps": "as-needed",
   "requirePragma": false,
-  "parser": "typescript",
-  "overrides": [
-    {
-      "files": ["*.mjs", "*.cjs", "*.js"],
-      "options": {
-        "parser": "babel"
-      }
-    },
-
-    {
-      "files": ["*.mts", "*.cts", "*.ts"],
-      "options": {
-        "parser": "babel-ts"
-      }
-    }
-  ]
+  "parser": "typescript"
 }
