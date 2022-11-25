@@ -3,8 +3,9 @@ import { getSortedComponentsData } from '../../lib/components';
 import Date from '../../components/Date';
 import Head from 'next/head';
 import Link from 'next/link';
+import styled from 'styled-components';
 
-export const getStaticProps = async({ params }) => {
+export const getStaticProps = async ({ params }) => {
   const docData = await getDocData(params.id);
   const allDocsData = getSortedDocsData();
   const allComponentsData = getSortedComponentsData();
@@ -13,10 +14,10 @@ export const getStaticProps = async({ params }) => {
     props: {
       docData,
       allDocsData,
-      allComponentsData
+      allComponentsData,
     },
   };
-}
+};
 
 export const getStaticPaths = () => {
   const paths = getAllDocIds();
@@ -24,24 +25,27 @@ export const getStaticPaths = () => {
     paths,
     fallback: false,
   };
-}
+};
+
+const HeaderImage = styled.img`
+  width: 50%;
+  margin: auto;
+`;
 
 const Doc = ({ docData }) => {
-  return(
+  return (
     <>
       <Head>
         <title>{docData.name}</title>
       </Head>
-      {docData.name}
-      <br />
-      {docData.id}
-      <br />
-      <Date dateString={docData.date} />s
+      <HeaderImage src={`/${docData.thumbnail}`} />
+      <h1>{docData.name}</h1>
+      <Date dateString={docData.date} />
       <br />
       <div dangerouslySetInnerHTML={{ __html: docData.contentHtml }} />
       <Link href="/">Back to home</Link>
     </>
-  )
+  );
 };
 
 export default Doc;
