@@ -18,6 +18,7 @@ interface GetData {
 }
 
 export const getSortedData = (directory:string): GetData[] => {
+
   // Get file names under /docs
   const fileNames = fs.readdirSync(directory)
   const allDocsData = fileNames.map((fileName) => {
@@ -73,25 +74,38 @@ export const getData = async (id: string, directory: string): Promise<GetData> =
 
   const fullPath = path.join(directory, file)
   const source = fs.readFileSync(fullPath, 'utf8')
-
+s
   // Use gray-matter to parse the doc metadata section
   const matterResult = matter(source);
 
   const { code, frontmatter } = await bundleMDX(
-    { source }, 
+    { source },
     // @ts-ignore
     {
       xdmOptions(options) {
-        options.remarkPlugins = [...(options?.remarkPlugins ?? []), remarkGfm];
+        options.remarkPlugins = [
+          ...(options?.remarkPlugins ?? []), 
+          remarkGfm,
+          remarkMdxCodeMeta];
         options.rehypePlugins = [
           ...(options?.rehypePlugins ?? []),
-          rehypePrism,
-          remarkMdxCodeMeta
+          rehypePrism
         ];
         return options;
       },
     }
   )
+
+  const compiled = await compile(source, {
+    remarkPlugins: [remarkGfm,remarkMdxCodeMeta],
+    rehypePlugins: [rehypePrism],
+    useDynamicImport: true,
+    baseUrl: true
+  })
+
+  console.log("META", compiled)
+  // console.log("CODE", code)
+  // console.log("MATTER", frontmatter)
 
   
   // Use remark to convert markdown into HTML string
@@ -107,5 +121,6 @@ export const getData = async (id: string, directory: string): Promise<GetData> =
     contentHtml,
     code,
     name: matterResult.data.name
+    compiled: String(compiled.value)
   }
 }
