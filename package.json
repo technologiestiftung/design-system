@@ -2,7 +2,7 @@
   "dependencies": {
     "@mdx-js/loader": "^2.1.5",
     "@mdx-js/react": "^2.1.5",
-    "@next/mdx": "^13.0.2",
+    "@next/mdx": "13.0.3",
     "babel-plugin-superjson-next": "^0.4.4",
     "babel-preset-next": "^1.4.0",
     "date-fns": "^2.29.3",
