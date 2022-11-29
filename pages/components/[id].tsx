@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import { getSortedComponentsData, getAllComponentIds, getComponentData } from '../../lib/components';
 import { getMDXComponent } from "mdx-bundler/client";
 import { getSortedDocsData } from '../../lib/docs';
@@ -6,15 +7,28 @@ import { useMemo } from "react";
 import Head from 'next/head';
 import Link from 'next/link';
 import { SyntaxHighlighter } from '../../components/SynthaxHighlighter';
+import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 
-export const getStaticProps = async({ params }) => {
-  const componentData = await getComponentData(params.id);
+export interface ComponentData {
+  id: string
+  name?: string
+  date?: Date
+  contentHtml: string
+  code: string
+}
+
+export interface ComponentPageProps {
+  data: ComponentData
+}
+
+export const getStaticProps = async({ params }: Params) => {
+  const data = await getComponentData(params.id);
   const allDocsData = getSortedDocsData();
   const allComponentsData = getSortedComponentsData();
 
   return {
     props: {
-      componentData,
+      data,
       allDocsData,
       allComponentsData
     },
@@ -29,10 +43,11 @@ export const getStaticPaths = () => {
   };
 }
 
-const Component = ({ componentData }) => {
+const Component: FC<ComponentPageProps> = ({ data }) => {
+
   const Component = useMemo(
-    () => getMDXComponent(componentData.code),
-    [componentData.code]
+    () => getMDXComponent(data.code),
+    [data.code]
   );
 
   const components = {
@@ -43,13 +58,13 @@ const Component = ({ componentData }) => {
     <>
       <h1>Hello world</h1>
       <Head>
-        <title>{componentData.name}</title>
+        <title>{data.name}</title>
       </Head>
-      {componentData.name}
+      {data.name}
       <br />
-      {componentData.id}
+      {data.id}
       <br />
-      <Component components={components} />
+      <Component components={components as any} />
       <Link href="/">Back to home</Link>
     </>
   )

@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import { getAllDocIds, getDocData, getSortedDocsData } from '../../lib/docs';
 import { getSortedComponentsData } from '../../lib/components';
 import Date from '../../components/Date';
@@ -5,7 +6,20 @@ import Head from 'next/head';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-export const getStaticProps = async ({ params }) => {
+export interface DocData {
+  name?: string
+  id: string
+  contentHtml: string
+  date?:Date
+  code: string
+  thumbnail?: string
+}
+
+export interface DocPageProps {
+  docData: DocData
+}
+
+export const getStaticProps = async({ params }) => {
   const docData = await getDocData(params.id);
   const allDocsData = getSortedDocsData();
   const allComponentsData = getSortedComponentsData();
@@ -32,15 +46,17 @@ const HeaderImage = styled.img`
   margin: auto;
 `;
 
-const Doc = ({ docData }) => {
-  return (
+
+const DocPage: FC<DocPageProps> = ({ docData }) => {
+  return(
     <>
       <Head>
         <title>{docData.name}</title>
       </Head>
+
       <HeaderImage src={`/${docData.thumbnail}`} />
       <h1>{docData.name}</h1>
-      <Date dateString={docData.date} />
+      <Date date={docData.date} />
       <br />
       <div dangerouslySetInnerHTML={{ __html: docData.contentHtml }} />
       <Link href="/">Back to home</Link>
@@ -48,4 +64,4 @@ const Doc = ({ docData }) => {
   );
 };
 
-export default Doc;
+export default DocPage;

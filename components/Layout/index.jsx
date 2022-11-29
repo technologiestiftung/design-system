@@ -5,8 +5,8 @@ import { Footer } from '../Footer'
 const PageWrapper = styled.section`
   display: grid;
   grid-template-areas:
-    "nav main"
-    "footer footer"
+    'nav main'
+    'footer footer';
 `
 
 const NavWrapper = styled.div`
@@ -25,7 +25,7 @@ export default function Layout({ children, data }) {
   return (
     <PageWrapper>
       <NavWrapper>
-        <Nav routerData={data} />
+        <Nav data={data} />
       </NavWrapper>
       <MainWrapper>
         <main>{children}</main>
