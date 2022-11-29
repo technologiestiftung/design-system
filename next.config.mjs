@@ -1,16 +1,16 @@
-import remarkGfm from "remark-gfm";
-import remarkMdxCodeMeta from "remark-mdx-code-meta"
-import createMDX from "@next/mdx";
-import remarkHtml from "remark-html";
+import remarkGfm from 'remark-gfm'
+import remarkMdxCodeMeta from 'remark-mdx-code-meta'
+import createMDX from '@next/mdx'
+import remarkHtml from 'remark-html'
 
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
   reactStrictMode: true,
-  pageExtensions: ["js", "jsx", "ts", "tsx", "md", "mdx"],
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'md', 'mdx'],
   webpack: (config) => {
-    config.resolve.fallback = { fs: false };
-    return config;
+    config.resolve.fallback = { fs: false }
+    return config
   },
   reactStrictMode: true,
   swcMinify: true,
@@ -21,7 +21,7 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-};
+}
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
@@ -29,7 +29,7 @@ const withMDX = createMDX({
     // If you use remark-gfm, you'll need to use next.config.mjs
     remarkPlugins: [remarkGfm, remarkMdxCodeMeta, remarkHtml],
     rehypePlugins: [],
-    providerImportSource: "@mdx-js/react",
+    providerImportSource: '@mdx-js/react',
   },
 })
 export default withMDX(nextConfig)

@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import Highlight, { defaultProps } from 'prism-react-renderer'
+import Highlight, { defaultProps, Language } from 'prism-react-renderer'
 import styled from 'styled-components'
 import { theme } from './styles'
 
@@ -25,21 +25,29 @@ const PreBlock = styled.pre`
   max-width: calc(100% + 64px);
   background: darkslategrey;
 `
+interface CodeBlock {
+  children: {
+    props: {
+      className?: string
+      children?: string
+    }
+  }
+}
 
-export const SyntaxHighlighter: FC<any> = ({ children }) => {
+export const SyntaxHighlighter: FC<CodeBlock> = ({ children }) => {
 
   const code = children.props.children
   const language = children.props.className?.replace('language-', '').trim()
 
   return (
-    <Highlight {...defaultProps} code={code} theme={theme as any} language={language}>
+    <Highlight {...defaultProps} code={code} theme={theme as any} language={language as Language}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <CodeBlockContainer>
           <PreBlock className={className} style={{ ...style }}>
             {tokens.slice(0, -1).map((line, i) => (
-              <div {...getLineProps({ line, key: i })}>
-                {line.map((token, key) => (
-                  <span {...getTokenProps({ token, key })} />
+              <div key={i} {...getLineProps({ line, key: i })}>
+                {line.map((token, i) => (
+                  <span key={i} {...getTokenProps({ token, i })} />
                 ))}
               </div>
             ))}

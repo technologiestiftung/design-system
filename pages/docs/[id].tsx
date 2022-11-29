@@ -5,7 +5,6 @@ import Date from '../../components/Date';
 import Head from 'next/head';
 import Link from 'next/link';
 import styled from 'styled-components';
-import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 
 export interface DocData {
   name?: string
@@ -16,12 +15,12 @@ export interface DocData {
   thumbnail?: string
 }
 
-export interface Doc {
+export interface DocPageProps {
   docData: DocData
 }
 
-export const getStaticProps = async({ params }: Params) => {
-  const docData :DocData = await getDocData(params.id);
+export const getStaticProps = async({ params }) => {
+  const docData = await getDocData(params.id);
   const allDocsData = getSortedDocsData();
   const allComponentsData = getSortedComponentsData();
 
@@ -48,7 +47,7 @@ const HeaderImage = styled.img`
 `;
 
 
-const Doc: FC<Doc> = ({ docData }) => {
+const DocPage: FC<DocPageProps> = ({ docData }) => {
   return(
     <>
       <Head>
@@ -57,7 +56,7 @@ const Doc: FC<Doc> = ({ docData }) => {
 
       <HeaderImage src={`/${docData.thumbnail}`} />
       <h1>{docData.name}</h1>
-      <Date dateString={docData.date} />
+      <Date date={docData.date} />
       <br />
       <div dangerouslySetInnerHTML={{ __html: docData.contentHtml }} />
       <Link href="/">Back to home</Link>
@@ -65,4 +64,4 @@ const Doc: FC<Doc> = ({ docData }) => {
   );
 };
 
-export default Doc;
+export default DocPage;

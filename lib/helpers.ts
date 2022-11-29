@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import matter, { GrayMatterFile } from 'gray-matter'
+import matter from 'gray-matter'
 import { remark } from 'remark'
 import html from 'remark-html'
 import { bundleMDX } from 'mdx-bundler'
@@ -8,8 +8,16 @@ import remarkGfm from 'remark-gfm'
 import rehypePrism from 'rehype-prism'
 import remarkMdxCodeMeta from 'remark-mdx-code-meta'
 
+interface GetData {
+  id: string
+  name: string
+  contentHtml: string
+  code: string
+  date?: Date
+  thumbnail?: string
+}
 
-export const getSortedData = (directory:string) => {
+export const getSortedData = (directory:string): GetData[] => {
   // Get file names under /docs
   const fileNames = fs.readdirSync(directory)
   const allDocsData = fileNames.map((fileName) => {
@@ -26,12 +34,15 @@ export const getSortedData = (directory:string) => {
     // Combine the data with the id
     return {
       id,
+      name: matterResult.data.name,
+      contentHtml: matterResult.data.contentHtml,
+      code: matterResult.data.code,
       ...matterResult.data,
     }
   })
   // Sort docs by date
-  // @ts-ignore
-  return allDocsData.sort(({ date: a }, { date: b }) => {
+
+  return allDocsData.sort(({ name: a }, { name: b }) => {
     if (a < b) {
       return 1
     } else if (a > b) {
@@ -54,7 +65,8 @@ export const getAllIds = (directory: string) => {
   })
 }
 
-export const getData = async (id: string, directory: string) => {
+
+export const getData = async (id: string, directory: string): Promise<GetData> => {
   // get filename no matter the file-type
   const fileNames = fs.readdirSync(directory)
   const file = fileNames.find((name) => name.indexOf(id) == 0)
@@ -94,5 +106,6 @@ export const getData = async (id: string, directory: string) => {
     ...matterResult.data,
     contentHtml,
     code,
+    name: matterResult.data.name
   }
 }

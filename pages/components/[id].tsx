@@ -7,11 +7,7 @@ import { useMemo } from "react";
 import Head from 'next/head';
 import Link from 'next/link';
 import { SyntaxHighlighter } from '../../components/SynthaxHighlighter';
-
-export interface ComponentMatter {
-  name: string,
-  date: Date
-}
+import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 
 export interface ComponentData {
   id: string
@@ -21,12 +17,12 @@ export interface ComponentData {
   code: string
 }
 
-export interface ComponentPage {
+export interface ComponentPageProps {
   data: ComponentData
 }
 
-export const getStaticProps = async({ params }) => {
-  const data: ComponentData = await getComponentData(params.id); 
+export const getStaticProps = async({ params }: Params) => {
+  const data = await getComponentData(params.id);
   const allDocsData = getSortedDocsData();
   const allComponentsData = getSortedComponentsData();
 
@@ -47,7 +43,7 @@ export const getStaticPaths = () => {
   };
 }
 
-const Component: FC<ComponentPage> = ({ data }) => {
+const Component: FC<ComponentPageProps> = ({ data }) => {
 
   const Component = useMemo(
     () => getMDXComponent(data.code),

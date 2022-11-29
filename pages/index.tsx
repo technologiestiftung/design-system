@@ -3,6 +3,8 @@ import Link from 'next/link'
 import Date from '../components/Date'
 import { getSortedDocsData } from '../lib/docs'
 import { getSortedComponentsData } from '../lib/components'
+import { DocData } from './docs/[id]'
+import { ComponentData } from './components/[id]'
 
 export async function getStaticProps() {
   const allDocsData = getSortedDocsData()
@@ -16,7 +18,12 @@ export async function getStaticProps() {
   }
 }
 
-const HomePage:FC<any> = ({ allDocsData, allComponentsData }) => {
+interface HomePageProps {
+  allDocsData: DocData[]
+  allComponentsData: ComponentData[]
+}
+
+const HomePage:FC<HomePageProps> = ({ allDocsData, allComponentsData }) => {
   return (
     <>
       <section>
