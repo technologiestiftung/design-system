@@ -5,8 +5,11 @@ import { remark } from 'remark'
 import html from 'remark-html'
 import { bundleMDX } from 'mdx-bundler'
 import remarkGfm from 'remark-gfm'
-import rehypePrism from 'rehype-prism'
 import remarkMdxCodeMeta from 'remark-mdx-code-meta'
+import type { ProcessorOptions } from '@mdx-js/esbuild/lib'
+import rehypeCodeTitles from 'rehype-code-titles'
+import rehypePrism from 'rehype-prism'
+import remarkSlug from 'remark-slug'
 
 interface GetData {
   id: string
@@ -19,7 +22,6 @@ interface GetData {
 
 export const getSortedData = (directory:string): GetData[] => {
 
-  // Get file names under /docs
   const fileNames = fs.readdirSync(directory)
   const allDocsData = fileNames.map((fileName) => {
     // Remove ".md" from file name to get id
@@ -74,53 +76,39 @@ export const getData = async (id: string, directory: string): Promise<GetData> =
 
   const fullPath = path.join(directory, file)
   const source = fs.readFileSync(fullPath, 'utf8')
-s
+
   // Use gray-matter to parse the doc metadata section
   const matterResult = matter(source);
 
-  const { code, frontmatter } = await bundleMDX(
-    { source },
-    // @ts-ignore
-    {
-      xdmOptions(options) {
-        options.remarkPlugins = [
-          ...(options?.remarkPlugins ?? []), 
-          remarkGfm,
-          remarkMdxCodeMeta];
-        options.rehypePlugins = [
-          ...(options?.rehypePlugins ?? []),
-          rehypePrism
-        ];
-        return options;
-      },
-    }
-  )
+  const options = {
+    mdxOptions(options: ProcessorOptions) {
+      options.remarkPlugins = [
+        ...(options.remarkPlugins ?? []),
+        remarkGfm,
+        remarkSlug,
+        remarkMdxCodeMeta
+      ]
+      options.rehypePlugins = [
+        ...(options.rehypePlugins ?? []),
+        rehypeCodeTitles,
+        rehypePrism,
+      ]
+      return options
+    },
+  }
 
-  const compiled = await compile(source, {
-    remarkPlugins: [remarkGfm,remarkMdxCodeMeta],
-    rehypePlugins: [rehypePrism],
-    useDynamicImport: true,
-    baseUrl: true
-  })
-
-  console.log("META", compiled)
-  // console.log("CODE", code)
-  // console.log("MATTER", frontmatter)
-
+  const { code, matter: frontmatter } = await bundleMDX({ source, ...options })
   
   // Use remark to convert markdown into HTML string
   const processedContent = await remark().use(html).process(matterResult.content)
-
   const contentHtml = processedContent.toString()
 
-  // Combine the data with the id
   return {
     id,
-    ...frontmatter,
-    ...matterResult.data,
     contentHtml,
     code,
-    name: matterResult.data.name
-    compiled: String(compiled.value)
+    name: frontmatter.data.name,
+    date: frontmatter.data.date,
+    thumbnail: frontmatter.data.thumbnail,
   }
 }

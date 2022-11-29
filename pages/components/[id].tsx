@@ -43,7 +43,7 @@ export const getStaticPaths = () => {
   };
 }
 
-const Component: FC<ComponentPageProps> = ({ data }) => {
+const ComponentPage: FC<ComponentPageProps> = ({ data }) => {
 
   const Component = useMemo(
     () => getMDXComponent(data.code),
@@ -53,6 +53,7 @@ const Component: FC<ComponentPageProps> = ({ data }) => {
   const components = {
     pre: SyntaxHighlighter,
   };
+
 
   return(
     <>
@@ -70,4 +71,4 @@ const Component: FC<ComponentPageProps> = ({ data }) => {
   )
 };
 
-export default Component;
+export default ComponentPage;

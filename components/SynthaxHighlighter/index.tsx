@@ -32,10 +32,13 @@ interface CodeBlock {
       children?: string
     }
   }
+  live?: boolean
+  fileName?: string
 }
 
-export const SyntaxHighlighter: FC<CodeBlock> = ({ children }) => {
+export const SyntaxHighlighter: FC<CodeBlock> = ({ children, live, fileName}) => {
 
+  console.log("COMPONENT_PROPS", live, fileName)
   const code = children.props.children
   const language = children.props.className?.replace('language-', '').trim()
 
