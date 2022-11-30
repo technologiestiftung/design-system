@@ -6,7 +6,7 @@ import { getSortedDocsData } from '../../lib/docs';
 import { useMemo } from "react";
 import Head from 'next/head';
 import Link from 'next/link';
-import { SyntaxHighlighter } from '../../components/SynthaxHighlighter';
+import { CodeBlock } from '../../components/CodeBlock';
 import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 
 export interface ComponentData {
@@ -51,7 +51,7 @@ const ComponentPage: FC<ComponentPageProps> = ({ data }) => {
   );
 
   const components = {
-    pre: SyntaxHighlighter,
+    pre: CodeBlock,
   };
 
 

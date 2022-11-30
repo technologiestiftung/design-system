@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import Highlight, { defaultProps, Language } from 'prism-react-renderer'
 import styled from 'styled-components'
-import { theme } from './styles'
+import { theme } from './synthaxHilghlighterTheme'
 
 const CodeBlockContainer = styled.div`
   position: relative;
@@ -23,27 +23,15 @@ const PreBlock = styled.pre`
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
   max-width: calc(100% + 64px);
-  background: darkslategrey;
 `
-interface CodeBlock {
-  children: {
-    props: {
-      className?: string
-      children?: string
-    }
-  }
-  live?: boolean
-  fileName?: string
+interface SynthaxHighlighterProps {
+  code: string,
+  language: Language
 }
 
-export const SyntaxHighlighter: FC<CodeBlock> = ({ children, live, fileName}) => {
-
-  console.log("COMPONENT_PROPS", live, fileName)
-  const code = children.props.children
-  const language = children.props.className?.replace('language-', '').trim()
-
+const SynthaxHighlighter :FC<SynthaxHighlighterProps> = ({code, language}) => {
   return (
-    <Highlight {...defaultProps} code={code} theme={theme as any} language={language as Language}>
+    <Highlight {...defaultProps} code={code} theme={theme as any} language={language}>
       {({ className, style, tokens, getLineProps, getTokenProps }) => (
         <CodeBlockContainer>
           <PreBlock className={className} style={{ ...style }}>
@@ -60,3 +48,5 @@ export const SyntaxHighlighter: FC<CodeBlock> = ({ children, live, fileName}) =>
     </Highlight>
   )
 }
+
+export default SynthaxHighlighter
