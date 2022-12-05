@@ -45,20 +45,21 @@ Read more here https://allcontributors.org/
 
 Get fancy shields at https://shields.io
  -->
+## Description
 
-Add your project description here
-
-## Prerequisites
+Welcome. This is the TSB design system. It's an incomplete collection of regularly used components and a documentation about basic rules, best practices and standards we're trying to work by. 
 
 ## Installation
 
+This is a regular next-3 static-page-application. Install dependencies and start the server via 
+```npm run dev``` or 
+```yarn dev```.
+
 ## Usage or Deployment
+All docs 
 
 ## Development
 
-## Tests
-
-## Contributing
 
 Before you create a pull request, write an issue so we can discuss your changes.
 
@@ -70,7 +71,6 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
-  <tbody>
     <tr>
       <td align="center"><a href="https://fabianmoronzirfas.me/"><img src="https://avatars.githubusercontent.com/u/315106?v=4?s=64" width="64px;" alt="Fabian Morón Zirfas"/><br /><sub><b>Fabian Morón Zirfas</b></sub></a><br /><a href="https://github.com/technologiestiftung/design-system/commits?author=ff6347" title="Documentation">📖</a></td>
       <td align="center"><a href="http://vogelino.com"><img src="https://avatars.githubusercontent.com/u/2759340?v=4?s=64" width="64px;" alt="Lucas Vogel"/><br /><sub><b>Lucas Vogel</b></sub></a><br /><a href="https://github.com/technologiestiftung/design-system/commits?author=vogelino" title="Documentation">📖</a> <a href="#ideas-vogelino" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/technologiestiftung/design-system/pulls?q=is%3Apr+reviewed-by%3Avogelino" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/technologiestiftung/design-system/commits?author=vogelino" title="Code">💻</a></td>
@@ -91,8 +91,6 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 ## Content Licencing
 
 Texts and content available as [CC BY](https://creativecommons.org/licenses/by/3.0/de/).
-
-Illustrations by Maria Musterfrau, all rights reserved.
 
 ## Credits
 
