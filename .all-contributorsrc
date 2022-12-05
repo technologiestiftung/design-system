@@ -1,5 +1,5 @@
 {
-  "projectName": "template-default",
+  "projectName": "design-system",
   "projectOwner": "technologiestiftung",
   "repoType": "github",
   "repoHost": "https://github.com",
@@ -38,6 +38,15 @@
       "profile": "http://www.awsm.de",
       "contributions": [
         "doc"
+      ]
+    },
+    {
+      "login": "marcoka2000",
+      "name": "Marco",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6945881?v=4",
+      "profile": "http://marcoka.de",
+      "contributions": [
+        "design"
       ]
     }
   ],
