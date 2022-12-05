@@ -1,12 +1,12 @@
 import { FC } from 'react'
-import { getSortedComponentsData, getAllComponentIds, getComponentData } from '../../lib/components';
+import { getSortedComponentsData, getAllComponentIds, getComponentData } from '@lib/components';
 import { getMDXComponent } from "mdx-bundler/client";
-import { getSortedDocsData } from '../../lib/docs';
+import { getSortedDocsData } from '@lib/docs';
 
 import { useMemo } from "react";
 import Head from 'next/head';
 import Link from 'next/link';
-import { CodeBlock } from '../../components/CodeBlock';
+import { CodeBlock } from '@components/CodeBlock';
 import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
 
 export interface ComponentData {
