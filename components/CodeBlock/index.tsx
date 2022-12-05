@@ -18,6 +18,7 @@ export const CodeBlock: FC<CodeBlockProps> = ({ children, live, fileName}) => {
   const code = children.props.children
   const language = children.props.className?.replace('language-', '').trim()
 
+
   return (
     <>
       { fileName && <span>{fileName}</span>}

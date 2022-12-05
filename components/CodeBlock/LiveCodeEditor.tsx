@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { Language } from 'prism-react-renderer'
 import { theme } from './liveCodeEditorTheme'
 import styled from 'styled-components'
+import * as components from '../index'
 
 import {
   LiveProvider,
@@ -31,9 +32,11 @@ interface LiveEditorProps {
   language: Language
 }
 
+const scope = { ...components };
+
 const LiveCodeEditor :FC<LiveEditorProps> = ({ code, language } ) => {
   return (
-    <LiveProvider code={ code } language={ language } theme={ theme }>
+    <LiveProvider code={ code } language={ language } theme={ theme } scope={scope}>
       <CodeBlockWrapper>
         <LiveEditor />
       </CodeBlockWrapper>

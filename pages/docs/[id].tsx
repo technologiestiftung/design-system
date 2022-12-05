@@ -1,10 +1,7 @@
 import { FC } from 'react'
-//@ts-ignore
-import { getAllDocIds, getDocData, getSortedDocsData } from '@lib/docs';
-//@ts-ignore
-import { getSortedComponentsData } from '@lib/components';
-//@ts-ignore
-import Date from '@components/Date';
+import { getAllDocIds, getDocData, getSortedDocsData } from '../../lib/docs';
+import { getSortedComponentsData } from '../../lib/components';
+import Date from '../../components/Date';
 import Head from 'next/head';
 import Link from 'next/link';
 import styled from 'styled-components';
