@@ -26,7 +26,7 @@ const PreBlock = styled.pre`
 `
 interface SynthaxHighlighterProps {
   code: string,
-  language: Language
+  language: Language,
 }
 
 const SynthaxHighlighter :FC<SynthaxHighlighterProps> = ({code, language}) => {

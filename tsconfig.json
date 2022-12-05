@@ -8,7 +8,7 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": false,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
@@ -18,9 +18,16 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "downlevelIteration": true,
-    "incremental": true
+    "incremental": true,
+    "baseUrl": "./",
+    "paths": {
+      "@components/*": ["./components/*"],
+      "@lib/*": ["./lib/*"],
+    }
   },
   "include": [
+    "./src/components",
+    "./src/lib",
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
