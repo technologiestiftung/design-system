@@ -9,7 +9,7 @@
     "babel-plugin-superjson-next": "^0.4.4",
     "babel-preset-next": "^1.4.0",
     "date-fns": "^2.29.3",
-    "esbuild": "^0.15.0",
+    "esbuild": "^0.25.0",
     "gray-matter": "^4.0.3",
     "mdx-bundler": "^9.0.1",
     "next": "13.0.5",
